@@ -1,0 +1,27 @@
+# reload sxhkdrc
+super + Pause
+    pkill -USR1 -x sxhkd
+
+# open firefox
+super + w
+    firefox
+
+# audio control
+super + {Prior, Next, Home, End}
+    amixer -q set Master {5%+, 5%-, 0%, 100%} && /home/tiejun/.local/bin/signal.sh 10
+
+# audio minor control
+super + shift + {Prior, Next}
+    amixer -q set Master {1%+, 1%-} && /home/tiejun/.local/bin/signal.sh 10
+
+# switch audio output
+super + Insert
+    /home/tiejun/.local/bin/switch_audio.sh && /home/tiejun/.local/bin/signal.sh 10
+
+# call screen shot
+super + Print
+    flameshot gui
+
+# toggle display power management 
+super + Delete
+    /home/tiejun/.local/bin/signal.sh 11

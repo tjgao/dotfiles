@@ -1,0 +1,123 @@
+{
+    "margin-top" : 15,
+        "margin-left": 15,
+        "margin-right": 15,
+        "height" : 45,
+        "modules-left": [
+            "hyprland/window"
+        ],
+        "modules-center": [
+            "hyprland/workspaces",
+            "custom/separator",
+            "tray",
+        ],
+        "modules-right": [
+            "cpu",
+            "memory",
+            "pulseaudio",
+            "network",
+            "temperature",
+            "battery",
+            "clock", 
+            "custom/power"
+        ],
+        "hyprland/window": {
+            "format": "{}",
+            "max-length": 50,
+            "rewrite": { "": " " },
+            "separate-outputs": true,
+        },
+        "hyprland/workspaces": {
+            "format": "{icon} ",
+            "on-click": "activate",
+            "format-icons": {
+//                "active": " ",
+//                "1": "甲",
+//                "2": "乙",
+//                "3": "丙",
+//                "4": "丁",
+//                "5": "戊",
+//                "6": "己",
+//                "7": "庚",
+//                "8": "辛",
+//                "9": "壬",
+//                "10": "癸",
+            },
+            "sort-by-number": true,
+            "persistent-workspaces": {
+               "*": 10 // 9 workspaces by default on every monitor
+            },
+        },
+
+        "clock": {
+            "format": "  {:%a, %b %d, %R}",
+            "format-alt": "  {:%H:%M}",
+            "tooltip-format": "<span size='15pt' color='#cad3f5' font='TerminessTTF Nerd Font'>{calendar}</span>",
+        },
+        "cpu": {
+            "format": "   {usage}%",
+            "tooltip": false
+        },
+        "memory": {
+            "format": "   {}%"
+        },
+        "temperature": {
+            "critical-threshold": 80,
+            "format": "{icon}  {temperatureC}°C",
+            "format-icons": ["", "", ""]
+        },
+        "battery": {
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon}  {capacity}%",
+            "format-full": "{icon}  {capacity}%",
+            "format-charging": "  {capacity}%",
+            "format-plugged": "  {capacity}%",
+            "format-alt": "{time} {icon}",
+            "format-icons": ["", "", "", "", ""]
+        },
+        "network": {
+            "format-wifi": "   {signalStrength}%",
+            "format-ethernet": "{cidr}  ",
+            "tooltip-format": "{ifname} via {gwaddr}  ",
+            "format-linked": "{ifname} (No IP)  ",
+            "format-disconnected": " ⚠ ",
+            "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        },
+        "pulseaudio": {
+            "format": "{icon}  {volume}%  {format_source}",
+            "format-bluetooth": "{volume}% {icon} {format_source}",
+            "format-bluetooth-muted": "󰟎  {icon} {format_source}",
+            "format-muted": "󰟎  {volume}%  {format_source}", 
+            "format-source": "  {volume}%",
+            "format-source-muted": "  {volume}%",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+        },
+        "tray": {
+            "foramt": "<span color='#cad3f5'> {icon} </span>",
+            "icon-size": 20,
+            "spacing": 10,
+            "icon-theme": "locolor",
+        },
+        "custom/power": {
+            "format" : "<span color='#cad3f5'> ⎸  </span>",
+            "tooltip": false,
+            "on-click": "wlogout -b 4",
+        },
+        "custom/separator": {
+            "format": "<span color='#cad3f5'>  ⎸</span>",
+            "tooltip": false,
+            "interval": "once",
+        }
+}

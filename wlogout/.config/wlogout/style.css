@@ -1,0 +1,93 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* pywal-wlogout */
+
+/* Importing pywal colors */
+
+/* @import '../../.cache/wal/colors-waybar.css'; */
+
+* {
+    all: unset;
+}
+
+window {
+    font-family: Orbitron;
+    font-size: 30pt;
+    color:  white; 
+    background-color: rgba(24, 27, 32, 0.9);
+
+} 
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    background-color: transparent;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s ease-in;
+    box-shadow: 0 0 10px 2px transparent;
+    border-radius: 36px;
+    margin: 10px;
+    color: #363833;
+    /* color: transparent; */
+}
+
+button:focus {
+    box-shadow: none;
+    background-size : 20%;
+}
+
+button:hover {
+    background-size: 20%;
+    box-shadow: 0 0 10px 3px rgba(0,0,0,.4);
+    background-color: @color6;
+    color: white;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.5s ease-in;
+}
+
+#shutdown {
+    background-image: image(url("./icons/power-hover.png"));
+    background-size: 20%;
+}
+#shutdown:hover {
+  background-image: image(url("./icons/power.png"));
+    background-size: 20%;
+}
+
+#logout {
+    background-image: image(url("./icons/logout-hover.png"));
+    background-size: 20%;
+
+}
+#logout:hover {
+  background-image: image(url("./icons/logout.png"));
+    background-size: 20%;
+}
+
+#reboot {
+    background-image: image(url("./icons/restart-hover.png"));
+    background-size: 20%;
+}
+
+#reboot:hover {
+  background-image: image(url("./icons/restart.png"));
+    background-size: 20%;
+}
+
+#lock {
+    background-image: image(url("./icons/lock-hover.png"));
+    background-size: 20%;
+}
+
+#lock:hover {
+  background-image: image(url("./icons/lock.png"));
+    background-size: 20%;
+}
+
+#hibernate {
+    background-image: image(url("./icons/hibernate-hover.png"));
+    background-size: 20%;
+}
+#hibernate:hover {
+  background-image: image(url("./icons/hibernate.png"));
+    background-size: 20%;
+}

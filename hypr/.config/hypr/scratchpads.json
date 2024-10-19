@@ -1,0 +1,8 @@
+{
+    "yazi": {
+        "cmd": "kitty zsh -c yazi"
+    },
+    "kitty": {
+        "cmd": "kitty"
+    }
+}

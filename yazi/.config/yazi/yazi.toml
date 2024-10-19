@@ -1,0 +1,35 @@
+[manager]
+ratio = [1, 2, 4]
+linemode = "size_and_mtime"
+
+[preview]
+max_width = 2000
+max_height = 2000
+image_quality = 80
+
+[opener]
+play = [
+    { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+]
+
+pdf_viewer = [
+    { run = 'zathura "$@"', orphan = true, for = "unix" },
+]
+
+image_viewer = [
+    { run = '~/.local/bin/gsxiv.py "$@"', orphan = true, for = "unix" },
+]
+
+edit = [
+    { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+[open]
+prepend_rules = [
+    # { mime = "text/*", use = "edit" },
+    { name = "*.pdf", use = "pdf_viewer" },
+    { name = "*.epub", use = "pdf_viewer" },
+    { name = "*.js", use = "edit" },
+    { name = "*.html", use = ["edit", "open", "reveal"] },
+    { mime = "image/*", use = [ "image_viewer", "reveal" ] },
+    { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+]
