@@ -11,33 +11,34 @@
 
 window {
     font-family: Orbitron;
-    font-size: 30pt;
+    font-size: 50pt;
     color:  white; 
-    background-color: rgba(24, 27, 32, 0.9);
+    background-color: rgba(24, 27, 32, 0.95);
 
 } 
 
 button {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 20%;
+    background-size: 30%;
     background-color: transparent;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s ease-in;
     box-shadow: 0 0 10px 2px transparent;
     border-radius: 36px;
     margin: 10px;
-    color: #363833;
+    font-weight: 900;
+    color: #242732;
     /* color: transparent; */
 }
 
 button:focus {
     box-shadow: none;
-    background-size : 20%;
+    background-size : 30%;
 }
 
 button:hover {
-    background-size: 20%;
+    background-size: 30%;
     box-shadow: 0 0 10px 3px rgba(0,0,0,.4);
     background-color: @color6;
     color: white;
@@ -46,48 +47,42 @@ button:hover {
 
 #shutdown {
     background-image: image(url("./icons/power-hover.png"));
-    background-size: 20%;
+    background-color: rgba(200, 86, 66, 0.5);
 }
 #shutdown:hover {
   background-image: image(url("./icons/power.png"));
-    background-size: 20%;
 }
 
 #logout {
     background-image: image(url("./icons/logout-hover.png"));
-    background-size: 20%;
+    background-color: rgba(200, 200, 66, 0.5);
 
 }
 #logout:hover {
   background-image: image(url("./icons/logout.png"));
-    background-size: 20%;
 }
 
 #reboot {
     background-image: image(url("./icons/restart-hover.png"));
-    background-size: 20%;
+    background-color: rgba(66, 200, 66, 0.5);
 }
 
 #reboot:hover {
   background-image: image(url("./icons/restart.png"));
-    background-size: 20%;
 }
 
 #lock {
     background-image: image(url("./icons/lock-hover.png"));
-    background-size: 20%;
+    background-color: rgba(90, 80, 190, 0.5);
 }
 
 #lock:hover {
   background-image: image(url("./icons/lock.png"));
-    background-size: 20%;
 }
 
 #hibernate {
     background-image: image(url("./icons/hibernate-hover.png"));
-    background-size: 20%;
 }
 #hibernate:hover {
   background-image: image(url("./icons/hibernate.png"));
-    background-size: 20%;
 }
