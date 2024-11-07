@@ -111,12 +111,12 @@
             "icon-theme": "locolor",
         },
         "custom/power": {
-            "format" : "<span color='#cad3f5'> ⎸  </span>",
+            "format" : "<span color='#cad3f5'> 󰇙  </span>",
             "tooltip": false,
             "on-click": "wlogout -b 4",
         },
         "custom/separator": {
-            "format": "<span color='#cad3f5'>  ⎸</span>",
+            "format": "<span color='#cad3f5'> 󰇙 </span>",
             "tooltip": false,
             "interval": "once",
         }
