@@ -75,7 +75,7 @@ ZSH_THEME="afowler"
 
 # Define an init function and append to zvm_after_init_commands
 #plugins=(fzf symfony2 z ripgrep zsh-autosuggestions zsh-vi-mode)
-plugins=(fzf symfony2 z zsh-autosuggestions)
+plugins=(fzf symfony2 zoxide zsh-autosuggestions)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -157,4 +157,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
+eval "$(zoxide init zsh)"

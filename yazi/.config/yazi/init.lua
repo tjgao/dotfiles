@@ -1,6 +1,6 @@
 -- ~/.config/yazi/init.lua
 function Linemode:size_and_mtime()
-    local time = math.floor(self._file.cha.modified or 0)
+    local time = math.floor(self._file.cha.mtime or 0)
     if time == 0 then
         time = ""
     elseif os.date("%Y", time) == os.date("%Y") then
@@ -32,7 +32,7 @@ function Status:name()
     if h == nil or ya.target_family() ~= "unix" then
         return ui.Line({})
     end
-    local mtime = math.floor(h.cha.modified or 0)
+    local mtime = math.floor(h.cha.mtime or 0)
     if mtime == 0 then
         mtime = ""
     else
