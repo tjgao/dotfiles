@@ -1,0 +1,2 @@
+launch zsh -c "source ~/.zshrc && yazi"
+

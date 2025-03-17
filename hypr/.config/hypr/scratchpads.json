@@ -1,6 +1,6 @@
 {
     "yazi": {
-        "cmd": "kitty zsh -c yazi"
+        "cmd": "kitty --session $HOME/.config/kitty/scratchpads.session"
     },
     "kitty": {
         "cmd": "kitty"
