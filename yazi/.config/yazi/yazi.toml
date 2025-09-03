@@ -26,8 +26,9 @@ edit = [
 [open]
 prepend_rules = [
     # { mime = "text/*", use = "edit" },
-    { name = "*.pdf", use = "pdf_viewer" },
-    { name = "*.epub", use = "pdf_viewer" },
+    { mime = "application/{pdf,epub}", use = "pdf_viewer" },
+    # { name = "*.pdf", use = "pdf_viewer" },
+    # { name = "*.epub", use = "pdf_viewer" },
     { name = "*.js", use = "edit" },
     { name = "*.html", use = ["edit", "open", "reveal"] },
     { mime = "image/*", use = [ "image_viewer", "reveal" ] },
