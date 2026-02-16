@@ -158,3 +158,70 @@ case ":$PATH:" in
 esac
 # pnpm end
 eval "$(zoxide init zsh)"
+
+
+autoload -Uz compinit
+compinit
+
+
+j() {
+    local dir
+    dir=$(zoxide query -l | fzf \
+    --height 50% \
+    --reverse \
+    --preview 'ls -la {1}' \
+    --preview-window=right:50%) || return
+    cd "${dir#* }"
+}
+
+fzf-universal-widget() {
+    if [[ "$LBUFFER" == *, ]]; then
+        # Extract the text between the last space and the comma
+        local prefix="${LBUFFER%,*}"
+        local query="${prefix##* }"
+        
+        local selected=$(
+            {
+                zoxide query -l 2>/dev/null
+                fd --type f --max-depth 3 2>/dev/null || find . -type f -maxdepth 3 2>/dev/null
+            } | fzf \
+                --height=50% \
+                --reverse \
+                --query="$query" \
+                --preview 'bat --color=always {} 2>/dev/null || cat {} 2>/dev/null || ls -la {}' \
+                --preview-window=right:50%:wrap
+        )
+        
+        if [[ -n "$selected" ]]; then
+            # Remove everything from last space to comma, then add selection
+            LBUFFER="${prefix% *} ${selected}"
+            # Handle case where there was no space before (command is at start)
+            [[ "$prefix" != *" "* ]] && LBUFFER="$selected"
+        fi
+        zle reset-prompt
+    fi
+}
+
+
+# Create a ZLE widget
+zle -N fzf-universal-widget
+
+# Bind to Tab key
+bindkey '^I' fzf-universal-widget
+
+_my_expand_or_complete() {
+    if [[ "$LBUFFER" == *, ]]; then
+        # Our custom zoxide search
+        zle fzf-universal-widget
+    elif [[ "$LBUFFER" == *"**" ]]; then
+        # Pass to fzf's completion for **
+        zle fzf-completion
+    else
+        # Default completion
+        zle expand-or-complete
+    fi
+}
+
+zle -N _my_expand_or_complete
+bindkey '^I' _my_expand_or_complete
+
