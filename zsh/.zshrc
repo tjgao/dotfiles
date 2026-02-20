@@ -163,17 +163,6 @@ eval "$(zoxide init zsh)"
 autoload -Uz compinit
 compinit
 
-
-j() {
-    local dir
-    dir=$(zoxide query -l | fzf \
-    --height 50% \
-    --reverse \
-    --preview 'ls -la {1}' \
-    --preview-window=right:50%) || return
-    cd "${dir#* }"
-}
-
 fzf-universal-widget() {
     if [[ "$LBUFFER" == *, ]]; then
         # Extract the text between the last space and the comma
