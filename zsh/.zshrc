@@ -115,14 +115,13 @@ alias nv=nvim
 alias vi=nvim
 alias vim=nvim
 alias cat=bat
-alias b=git branch --show-current
-alias npm=pnpm
+alias b="git branch --show-current"
 # alias music=ncmpcpp
 export VISUAL=nvim
 export EDITOR=nvim
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH=~/.local/kitty.app/bin:~/code/github/go/bin:/opt/neovim/bin:~/go/bin::~/.pyenv/bin:~/.local/bin:$PATH
+export PATH=~/.local/kitty.app/bin:~/code/github/go/bin:/opt/neovim/bin:~/go/bin:~/.pyenv/bin:~/.local/bin:~/.local/share/pnpm/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -150,13 +149,6 @@ export PS1='%F{blue}  %f%b%F{#9494b8}%3~ %B%(!.%F{red}.%F{blue}) %f%b'
 colorscript random
 
 
-# pnpm
-export PNPM_HOME="/home/tiejun/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 eval "$(zoxide init zsh)"
 
 
@@ -214,3 +206,10 @@ _my_expand_or_complete() {
 zle -N _my_expand_or_complete
 bindkey '^I' _my_expand_or_complete
 
+# pnpm
+export PNPM_HOME="/home/tiejun/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
