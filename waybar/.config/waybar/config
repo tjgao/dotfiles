@@ -28,7 +28,7 @@
             "separate-outputs": true,
         },
         "hyprland/workspaces": {
-            "format": "{icon} ",
+            "format": "{icon} {windows}",
             "on-click": "activate",
             "format-icons": {
 //                "active": " ",
@@ -57,6 +57,11 @@
             "persistent-workspaces": {
                "*": 10 // 9 workspaces by default on every monitor
             },
+            // "window-rewrite-default": "", // Fallback icon for any other open window
+            // "window-rewrite": {
+            //     "class<kitty>": "",
+            //     "class<kitty>,title<.*Neovim.*>": ""
+            // },
         },
 
         "clock": {
