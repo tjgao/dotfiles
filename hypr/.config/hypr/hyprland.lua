@@ -38,10 +38,10 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env(
     "PATH",
     home
-        .. "/.local/bin:"
-        .. home
-        .. "/.local/kitty.app/bin:"
-        .. "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/neovim/bin"
+    .. "/.local/bin:"
+    .. home
+    .. "/.local/kitty.app/bin:"
+    .. "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/neovim/bin"
 )
 hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
@@ -139,7 +139,7 @@ hl.curve("myBezier", {
     type = "bezier",
     points = {
         { 0.05, 0.9 },
-        { 0.1, 1.05 },
+        { 0.1,  1.05 },
     },
 })
 
@@ -215,21 +215,31 @@ hl.window_rule({
 -- substitutions, globs, pipes and redirections continue to work.
 
 hl.on("hyprland.start", function()
+    -- Keep dbus/systemd user activation environment in sync with this session.
+    hl.exec_cmd(
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE"
+    )
+
+    -- On non-uwsm sessions, xdg-desktop-portal may fail systemd deps.
+    -- Start a local portal backend fallback so browser idle-inhibit can work.
+    hl.exec_cmd("pidof xdg-desktop-portal >/dev/null || /usr/libexec/xdg-desktop-portal")
+    hl.exec_cmd("pidof xdg-desktop-portal-gtk >/dev/null || /usr/libexec/xdg-desktop-portal-gtk")
+
     hl.exec_cmd("waybar")
     hl.exec_cmd("swaync")
     hl.exec_cmd("fcitx5")
-    hl.exec_cmd("hypridle >> /tmp/hypridle.log")
+    -- hl.exec_cmd("hypridle >> /tmp/hypridle.log")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("blueman-applet")
 
     hl.exec_cmd(
         localBin
-            .. "/swww.py --bin-path "
-            .. localBin
-            .. ' --daemon --image "$(ls -d '
-            .. wallpaperDir
-            .. '/* | shuf | head -n1)"'
+        .. "/swww.py --bin-path "
+        .. localBin
+        .. ' --daemon --image "$(ls -d '
+        .. wallpaperDir
+        .. '/* | shuf | head -n1)"'
     )
 
     hl.exec_cmd(
@@ -292,26 +302,10 @@ bind(mainMod .. " + K", dsp.focus({ direction = "up" }))
 bind(mainMod .. " + J", dsp.focus({ direction = "down" }))
 
 -- Resize windows (equivalent to old binde = ..., resizeactive ...).
-bind(
-    mainMod .. " + SHIFT + RIGHT",
-    dsp.window.resize({ x = 10, y = 0, relative = true }),
-    { repeating = true }
-)
-bind(
-    mainMod .. " + SHIFT + LEFT",
-    dsp.window.resize({ x = -10, y = 0, relative = true }),
-    { repeating = true }
-)
-bind(
-    mainMod .. " + SHIFT + UP",
-    dsp.window.resize({ x = 0, y = -10, relative = true }),
-    { repeating = true }
-)
-bind(
-    mainMod .. " + SHIFT + DOWN",
-    dsp.window.resize({ x = 0, y = 10, relative = true }),
-    { repeating = true }
-)
+bind(mainMod .. " + SHIFT + RIGHT", dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+bind(mainMod .. " + SHIFT + LEFT", dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+bind(mainMod .. " + SHIFT + UP", dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+bind(mainMod .. " + SHIFT + DOWN", dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
 
 -- Switch workspaces
 for i = 1, 9 do
