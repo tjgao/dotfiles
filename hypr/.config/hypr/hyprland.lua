@@ -38,10 +38,10 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env(
     "PATH",
     home
-    .. "/.local/bin:"
-    .. home
-    .. "/.local/kitty.app/bin:"
-    .. "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/neovim/bin"
+        .. "/.local/bin:"
+        .. home
+        .. "/.local/kitty.app/bin:"
+        .. "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/neovim/bin"
 )
 hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
@@ -139,7 +139,7 @@ hl.curve("myBezier", {
     type = "bezier",
     points = {
         { 0.05, 0.9 },
-        { 0.1,  1.05 },
+        { 0.1, 1.05 },
     },
 })
 
@@ -235,11 +235,11 @@ hl.on("hyprland.start", function()
 
     hl.exec_cmd(
         localBin
-        .. "/swww.py --bin-path "
-        .. localBin
-        .. ' --daemon --image "$(ls -d '
-        .. wallpaperDir
-        .. '/* | shuf | head -n1)"'
+            .. "/swww.py --bin-path "
+            .. localBin
+            .. ' --daemon --image "$(ls -d '
+            .. wallpaperDir
+            .. '/* | shuf | head -n1)"'
     )
 
     hl.exec_cmd(
