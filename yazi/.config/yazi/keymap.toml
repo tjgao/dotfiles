@@ -6,6 +6,11 @@
 
 [[mgr.prepend_keymap]]
 on = "q"
+run = "noop"
+desc = "Do nothing (prevents accidental quit)"
+
+[[mgr.prepend_keymap]]
+on = [ "q", "q" ]
 run = "close"
 desc = "Close current tab"
 
