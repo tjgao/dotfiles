@@ -29,8 +29,8 @@ prepend_rules = [
     { mime = "application/{pdf,epub}", use = "pdf_viewer" },
     # { name = "*.pdf", use = "pdf_viewer" },
     # { name = "*.epub", use = "pdf_viewer" },
-    { name = "*.js", use = "edit" },
-    { name = "*.html", use = ["edit", "open", "reveal"] },
+    { url = "*.js", use = "edit" },
+    { url = "*.html", use = ["edit", "open", "reveal"] },
     { mime = "image/*", use = [ "image_viewer", "reveal" ] },
     { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 ]
