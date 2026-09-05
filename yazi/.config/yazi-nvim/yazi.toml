@@ -1,0 +1,44 @@
+[manager]
+ratio = [1, 2, 4]
+linemode = "size_and_mtime"
+
+[preview]
+max_width = 2000
+max_height = 2000
+image_quality = 80
+
+[opener]
+play = [
+    { run = 'mpv --force-window %s', orphan = true, for = "unix" },
+]
+
+pdf_viewer = [
+    { run = 'zathura %s', orphan = true, for = "unix" },
+]
+
+# image_viewer = [
+#     { run = '~/.local/bin/gsxiv.py "$@"', orphan = true, for = "unix" },
+# ]
+
+image_external = [
+  { run = "sxiv %s", orphan = true, block = false, for = "linux" }
+]
+
+# image_external = [
+#   { run = "nohup sxiv \"%s\" >/dev/null 2>&1 &", orphan = true, block = false, for = "linux" }
+# ]
+
+
+edit = [
+    { run = '$EDITOR %s', block = true, for = "unix" },
+]
+
+[open]
+prepend_rules = [
+    { mime = "image/*", use = [ "image_external" ] },
+    { mime = "application/{pdf,epub}", use = "pdf_viewer" },
+    { url = "*.js", use = "edit" },
+    { url = "*.html", use = ["edit", "open", "reveal"] },
+    { mime = "image/*", use = [ "image_viewer", "reveal" ] },
+    { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+]

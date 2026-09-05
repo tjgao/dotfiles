@@ -1,0 +1,25 @@
+# [manager]
+# prepend_keymap = [
+#     { on = "q", run = "close", desc = "Close current tab" },
+#     { on = "Q", run = "quit", desc = "Quit yazi"},
+# ]
+
+[[mgr.prepend_keymap]]
+on = "q"
+run = "noop"
+desc = "Do nothing (prevents accidental quit)"
+
+[[mgr.prepend_keymap]]
+on = [ "q", "q" ]
+run = "close"
+desc = "Close current tab"
+
+[[mgr.prepend_keymap]]
+on = "Q"
+run = "quit"
+desc = "Quit yazi"
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = 'shell --orphan -- "/home/tiejun/.config/yazi-nvim/open-selected-media.sh" "%h" %s'
+desc = "Open selected images in sxiv / PDFs in zathura"
