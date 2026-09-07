@@ -18,3 +18,8 @@ desc = "Close current tab"
 on = "Q"
 run = "quit"
 desc = "Quit yazi"
+
+[[mgr.prepend_keymap]]
+on   = [ "C" ]
+run  = "plugin ouch"
+desc = "Compress selection with ouch"

@@ -34,3 +34,22 @@ prepend_rules = [
     { mime = "image/*", use = [ "image_viewer", "reveal" ] },
     { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 ]
+
+[plugin]
+prepend_previewers = [
+#    { url = "*.csv", run = "duckdb" },
+#    { url = "*.tsv", run = "duckdb" },
+#    { url = "*.parquet", run = "duckdb" },
+#    { url = "*.json", run = "duckdb" },
+#    { url = "*.duckdb", run = "duckdb" },
+#    { url = "*.db", run = "duckdb" },
+    { mime = "application/x-tar", run = "ouch" },
+    { mime = "application/x-bzip2", run = "ouch" },
+    { mime = "application/gzip", run = "ouch" },
+    { mime = "application/zip", run = "ouch" },
+    { mime = "application/x-7z-compressed", run = "ouch" },
+    { mime = "application/x-rar", run = "ouch" },
+    { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+    { mime = "{image,audio,video}/*", run = "mediainfo" },
+    { mime = "application/x-subrip", run = "mediainfo" },
+]
