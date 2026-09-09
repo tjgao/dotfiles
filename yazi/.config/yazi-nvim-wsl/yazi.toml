@@ -1,0 +1,62 @@
+[manager]
+ratio = [1, 2, 4]
+linemode = "size_and_mtime"
+
+[preview]
+max_width = 2000
+max_height = 2000
+image_quality = 80
+
+[opener]
+play = [
+    { run = 'mpv --force-window %s', orphan = true, for = "unix" },
+]
+
+pdf_viewer = [
+    { run = 'zathura %s', orphan = true, for = "unix" },
+]
+
+image_external = [
+    { run = 'sxiv -g 1440x980 -s w %s', orphan = true, for = "unix" },
+]
+
+ms_office = [
+    { run = '''for f in "$@"; do cmd.exe /C start "" "$(wslpath -w "$f")"; done''', orphan = true, for = "unix" },
+]
+
+
+edit = [
+    { run = '$EDITOR %s', block = true, for = "unix" },
+]
+
+[open]
+prepend_rules = [
+    { mime = "application/vnd.openxmlformats-officedocument.*", use = "ms_office" },
+    { mime = "application/vnd.ms-{word,excel,powerpoint}", use = "ms_office" },
+    { url = "*.{doc,docx,xls,xlsx,ppt,pptx}", use = "ms_office" },
+    { mime = "image/*", use = [ "image_external" ] },
+    { mime = "application/{pdf,epub}", use = "pdf_viewer" },
+    { url = "*.js", use = "edit" },
+    { url = "*.html", use = ["edit", "open", "reveal"] },
+    { mime = "image/*", use = [ "image_viewer", "reveal" ] },
+    { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+]
+
+[plugin]
+prepend_previewers = [
+    { mime = "{image,audio,video}/*", run = "mediainfo" },
+    { mime = "application/x-subrip", run = "mediainfo" },
+
+	{ mime = "text/csv", run = "duckdb" },
+	{ mime = "text/tab-separated-values", run = "duckdb" },
+
+    { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch" },
+
+    # Preview Markdown using the 'glow' command line utility
+    { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+    { url = "*.parquet", run = "duckdb" },
+    { url = "*.json", run = "duckdb" },
+
+    # Preview CSV files using 'visidata' (vd) in batch mode
+    # { url = "*.csv", run = 'piper -- vd -b -o - "$1"' }
+]
