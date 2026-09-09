@@ -45,20 +45,21 @@ prepend_rules = [
 
 [plugin]
 prepend_previewers = [
-	{ mime = "image/*", run = 'piper -- TERM=xterm-256color chafa --probe=off --passthrough=none -f symbols -c full --animate=off --relative=off --optimize=0 --size=${w:-80}x${h:-24} -- "$1" 2>/dev/null < /dev/null' },
-	{ mime = "text/csv", run = "duckdb" },
-	{ mime = "text/tab-separated-values", run = "duckdb" },
-
+    { mime = "image/*", run = 'piper -- TERM=xterm-256color chafa --probe=off --passthrough=none -f symbols -c full --animate=off --relative=off --optimize=0 --size=${w:-80}x${h:-24} -- "$1" 2>/dev/null < /dev/null' },
+    { mime = "application/pdf", run = 'piper -- ~/.config/yazi-wsl/yazi-preview-pdf.sh "$1"' },
+    { mime = "text/csv", run = "duckdb" },
+    { mime = "text/tab-separated-values", run = "duckdb" },
+    
     { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch" },
-
+    
     # Preview Markdown using the 'glow' command line utility
     { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
     { url = "*.parquet", run = "duckdb" },
     { url = "*.json", run = "duckdb" },
-
+    
     # Preview CSV files using 'visidata' (vd) in batch mode
     # { url = "*.csv", run = 'piper -- vd -b -o - "$1"' }
-
+    
     { mime = "{audio,video}/*", run = "mediainfo" },
     { mime = "application/x-subrip", run = "mediainfo" },
 ]
