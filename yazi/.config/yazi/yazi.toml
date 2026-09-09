@@ -37,12 +37,14 @@ prepend_rules = [
 
 [plugin]
 prepend_previewers = [
-#    { url = "*.csv", run = "duckdb" },
-#    { url = "*.tsv", run = "duckdb" },
-#    { url = "*.parquet", run = "duckdb" },
-#    { url = "*.json", run = "duckdb" },
-#    { url = "*.duckdb", run = "duckdb" },
-#    { url = "*.db", run = "duckdb" },
+    { mime = "text/csv", run = "duckdb" },
+    { mime = "application/csv", run = "duckdb" },
+    { url = "*.csv", run = "duckdb" },
+    { url = "*.tsv", run = "duckdb" },
+    { url = "*.parquet", run = "duckdb" },
+    { url = "*.json", run = "duckdb" },
+    { url = "*.duckdb", run = "duckdb" },
+    { url = "*.db", run = "duckdb" },
     { mime = "application/x-tar", run = "ouch" },
     { mime = "application/x-bzip2", run = "ouch" },
     { mime = "application/gzip", run = "ouch" },
@@ -52,4 +54,14 @@ prepend_previewers = [
     { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
     { mime = "{image,audio,video}/*", run = "mediainfo" },
     { mime = "application/x-subrip", run = "mediainfo" },
+]
+
+prepend_preloaders = [
+    { url = "*.csv", run = "duckdb", multi = false },
+    { url = "*.tsv", run = "duckdb", multi = false },
+    { url = "*.json", run = "duckdb", multi = false },
+    { url = "*.parquet", run = "duckdb", multi = false },
+    { url = "*.avro", run = "duckdb", multi = false },
+    { url = "*.txt", run = "duckdb", multi = false },
+    { url = "*.xlsx", run = "duckdb", multi = false },
 ]

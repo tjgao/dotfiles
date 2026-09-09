@@ -1,4 +1,10 @@
 -- ~/.config/yazi/init.lua
+require("duckdb"):setup({
+    mode = "summarized",
+    cache_enabled = true,
+    auto_install_extensions = false,
+})
+
 function Linemode:size_and_mtime()
     local time = math.floor(self._file.cha.mtime or 0)
     if time == 0 then

@@ -23,3 +23,8 @@ desc = "Quit yazi"
 on   = [ "C" ]
 run  = "plugin ouch"
 desc = "Compress selection with ouch"
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
