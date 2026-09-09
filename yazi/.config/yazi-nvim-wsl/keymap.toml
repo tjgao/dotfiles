@@ -1,9 +1,3 @@
-# [manager]
-# prepend_keymap = [
-#     { on = "q", run = "close", desc = "Close current tab" },
-#     { on = "Q", run = "quit", desc = "Quit yazi"},
-# ]
-
 [[mgr.prepend_keymap]]
 on = "q"
 run = "noop"
@@ -32,10 +26,14 @@ desc = "Jump to a directory via zoxide"
 [[mgr.prepend_keymap]]
 on = "z"
 run = "shell --block -- fzf -m"
-#run = 'shell --block -- ya emit cd "$(zoxide query -i)"'
 desc = "Jump to a file via zoxide"
 
 [[mgr.prepend_keymap]]
 on = "C"
 run = "plugin ouch"
 desc = "Compress with ouch"
+
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
