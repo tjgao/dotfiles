@@ -63,6 +63,7 @@ hl.config({
         sensitivity = 0,
         repeat_delay = 230,
         repeat_rate = 40,
+        kb_options = "caps:shift",
 
         touchpad = {
             natural_scroll = false,
