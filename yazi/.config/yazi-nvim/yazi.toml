@@ -1,6 +1,6 @@
-[manager]
-ratio = [1, 2, 4]
-linemode = "size_and_mtime"
+[mgr]
+ratio = [2, 5, 5]
+linemode = "size"
 
 [preview]
 max_width = 2000
